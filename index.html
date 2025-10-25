@@ -497,89 +497,6 @@
                 bottom: -35%;
             }
         }
-
-        /* Swami Maharaj image and effects */
-        .swami-glow-wrap {
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 420px;
-            height: 600px;
-            z-index: 3;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .swami-glow {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 420px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,255,200,0.7) 0%, rgba(255,255,200,0.3) 60%, transparent 100%);
-            filter: blur(40px);
-            z-index: 1;
-        }
-        .swami-img {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 340px;
-            height: auto;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .swami-beam {
-            position: absolute;
-            left: 60%;
-            top: 40%;
-            width: 600px;
-            height: 400px;
-            background: conic-gradient(from 210deg at 0 0, rgba(255,255,200,0.18) 0deg, rgba(255,255,200,0.09) 60deg, transparent 120deg);
-            filter: blur(18px);
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.8;
-        }
-        @media (max-width: 1024px) {
-            .swami-glow-wrap {
-                width: 280px;
-                height: 400px;
-            }
-            .swami-glow {
-                width: 280px;
-                height: 400px;
-            }
-            .swami-img {
-                width: 220px;
-            }
-            .swami-beam {
-                width: 350px;
-                height: 220px;
-            }
-        }
-        @media (max-width: 640px) {
-            .swami-glow-wrap {
-                width: 160px;
-                height: 220px;
-            }
-            .swami-glow {
-                width: 160px;
-                height: 220px;
-            }
-            .swami-img {
-                width: 120px;
-            }
-            .swami-beam {
-                width: 180px;
-                height: 100px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -697,13 +614,6 @@
                 </div>
             </div>
 
-            <!-- Swami Maharaj with glow and light beam -->
-            <div class="swami-glow-wrap">
-                <div class="swami-glow"></div>
-                <img src="swami.png" alt="Swami Maharaj" class="swami-img">
-                <div class="swami-beam"></div>
-            </div>
-
             <footer>
                 <div id="footer-text">© 2025 Guruprasad Production. All rights reserved.</div>
             </footer>
@@ -713,7 +623,7 @@
     <script>
         // Generate random starfield
         const starfield = document.getElementById('starfield');
-        const starCount = 150;
+        const starCount = 90; // reduced from 150
         
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
@@ -738,8 +648,8 @@
             // Random start position (top 10-60%, left 0-90%)
             star.style.top = (10 + Math.random() * 50) + '%';
             star.style.left = (Math.random() * 90) + '%';
-            // Random animation duration (2-4s)
-            const duration = 2 + Math.random() * 2;
+            // Slower animation duration (3.5-6s)
+            const duration = 3.5 + Math.random() * 2.5;
             star.style.animationDuration = duration + 's';
             // Random delay (0-2s)
             star.style.animationDelay = (Math.random() * 2) + 's';
@@ -747,11 +657,11 @@
             star.addEventListener('animationend', () => star.remove());
             shootingStarsRoot.appendChild(star);
         }
-        // Spawn shooting stars at random intervals
+        // Spawn shooting stars at rare intervals
         function shootingStarLoop() {
             spawnShootingStar();
-            // Next star in 0.8-2.5s
-            setTimeout(shootingStarLoop, 800 + Math.random() * 1700);
+            // Next star in 2.5-5.5s (rarer)
+            setTimeout(shootingStarLoop, 2500 + Math.random() * 3000);
         }
         shootingStarLoop();
 
